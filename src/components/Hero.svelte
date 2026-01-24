@@ -70,9 +70,9 @@
     <div class="profile-container">
       <div class="profile-frame">
         <div class="profile-glitch">
-          <img src="/githubprofile.png" alt="Kevin Rohan Vaz" class="profile-img" />
-          <img src="/githubprofile.png" alt="" class="profile-img glitch-r" aria-hidden="true" />
-          <img src="/githubprofile.png" alt="" class="profile-img glitch-b" aria-hidden="true" />
+          <img src="./githubprofile.png" alt="Kevin Rohan Vaz" class="profile-img" />
+          <img src="./githubprofile.png" alt="" class="profile-img glitch-r" aria-hidden="true" />
+          <img src="./githubprofile.png" alt="" class="profile-img glitch-b" aria-hidden="true" />
         </div>
       </div>
       <div class="profile-shadow"></div>
