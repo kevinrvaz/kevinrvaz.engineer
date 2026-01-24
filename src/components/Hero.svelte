@@ -22,7 +22,6 @@
 <section id="hero" class:visible>
   <!-- Comic book style background elements -->
   <div class="comic-bg">
-    <div class="dot-pattern"></div>
     <div class="comic-burst"></div>
   </div>
 
@@ -78,12 +77,6 @@
       </div>
       <div class="profile-shadow"></div>
     </div>
-    <!-- Floating elements -->
-    <div class="floating-shapes">
-      <div class="shape shape-1"></div>
-      <div class="shape shape-2"></div>
-      <div class="shape shape-3"></div>
-    </div>
   </div>
 </section>
 
@@ -116,15 +109,6 @@
     height: 100%;
     pointer-events: none;
     z-index: -1;
-  }
-
-  .dot-pattern {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(circle, rgba(255, 0, 255, 0.1) 2px, transparent 2px);
-    background-size: 30px 30px;
-    animation: float-3d 10s ease-in-out infinite;
   }
 
   .comic-burst {
@@ -538,9 +522,6 @@
     max-width: 540px;
     margin-bottom: 2rem;
     position: relative;
-    padding-left: 1rem;
-    border-left: 3px solid;
-    border-image: linear-gradient(to bottom, #ff00ff, #00ffff) 1;
   }
 
   .cta-buttons {
@@ -742,81 +723,6 @@
     filter: blur(8px);
   }
 
-  .profile-container::before {
-    content: '';
-    position: absolute;
-    top: -20px;
-    right: -20px;
-    width: 60px;
-    height: 60px;
-    border: 3px solid #ffff00;
-    transform: rotate(45deg);
-    animation: float-shape 6s ease-in-out infinite;
-  }
-
-  .profile-container::after {
-    content: '';
-    position: absolute;
-    bottom: -30px;
-    left: -30px;
-    width: 40px;
-    height: 40px;
-    border: 3px solid #00ffff;
-    border-radius: 50%;
-    animation: float-shape 6s ease-in-out infinite reverse;
-  }
-
-  /* Floating shapes */
-  .floating-shapes {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-
-  .shape {
-    position: absolute;
-    border: 3px solid;
-    animation: float-shape 8s ease-in-out infinite;
-  }
-
-  .shape-1 {
-    top: -20px;
-    right: -20px;
-    width: 60px;
-    height: 60px;
-    border-color: #ff00ff;
-    transform: rotate(45deg);
-    animation-delay: 0s;
-  }
-
-  .shape-2 {
-    bottom: -30px;
-    left: -30px;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border-color: #00ffff;
-    animation-delay: 2s;
-  }
-
-  .shape-3 {
-    top: 50%;
-    right: -40px;
-    width: 40px;
-    height: 40px;
-    border-color: #ffff00;
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    animation-delay: 4s;
-  }
-
-  @keyframes float-shape {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-20px) rotate(90deg); }
-    50% { transform: translateY(-10px) rotate(180deg); }
-    75% { transform: translateY(-30px) rotate(270deg); }
-  }
-
   @media (max-width: 900px) {
     section {
       flex-direction: column;
@@ -826,11 +732,6 @@
     .description {
       margin-left: auto;
       margin-right: auto;
-      border-left: none;
-      border-bottom: 3px solid;
-      border-image: linear-gradient(to right, #ff00ff, #00ffff) 1;
-      padding-left: 0;
-      padding-bottom: 1rem;
     }
 
     .cta-buttons {
@@ -844,11 +745,6 @@
     .profile-glitch {
       width: 220px;
       height: 220px;
-    }
-
-    .profile-container::before,
-    .profile-container::after {
-      display: none;
     }
 
     .tagline {

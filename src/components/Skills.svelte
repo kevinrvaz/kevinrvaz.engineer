@@ -122,6 +122,7 @@
   }
 
   .skill-category:hover {
+    animation-play-state: paused;
     transform: translate(-6px, -6px) scale(1.02);
     box-shadow: 12px 12px 0 #ff00ff;
     border-color: #ffff00;
