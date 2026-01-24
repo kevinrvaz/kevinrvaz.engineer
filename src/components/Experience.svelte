@@ -110,7 +110,7 @@
 <style>
   .timeline {
     position: relative;
-    padding-left: 2rem;
+    padding-left: 3rem;
   }
 
   .timeline::before {
@@ -119,50 +119,113 @@
     left: 0;
     top: 0;
     bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, #00d4ff, #00ffcc, transparent);
+    width: 4px;
+    background: linear-gradient(to bottom, #ff00ff, #00ffff, #ffff00, transparent);
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
   }
 
   .timeline-item {
     position: relative;
     margin-bottom: 3rem;
     opacity: 0;
-    animation: fadeInUp 0.6s ease forwards;
+    animation: slideInComic 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
-  @keyframes fadeInUp {
+  .timeline-item:nth-child(odd) {
+    animation-name: slideInLeft;
+  }
+
+  .timeline-item:nth-child(even) {
+    animation-name: slideInRight;
+  }
+
+  @keyframes slideInLeft {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateX(-50px) rotate(-2deg);
     }
     to {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateX(0) rotate(0deg);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px) rotate(2deg);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) rotate(0deg);
+    }
+  }
+
+  @keyframes slideInComic {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
   }
 
   .timeline-marker {
     position: absolute;
-    left: -2.5rem;
+    left: -3.5rem;
     top: 0.5rem;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #00d4ff;
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #ff00ff, #00ffff);
+    box-shadow:
+      0 0 20px rgba(255, 0, 255, 0.8),
+      0 0 40px rgba(0, 255, 255, 0.5);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    animation: pulse-marker 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-marker {
+    0%, 100% {
+      transform: scale(1) rotate(0deg);
+      box-shadow:
+        0 0 20px rgba(255, 0, 255, 0.8),
+        0 0 40px rgba(0, 255, 255, 0.5);
+    }
+    50% {
+      transform: scale(1.2) rotate(45deg);
+      box-shadow:
+        0 0 30px rgba(255, 0, 255, 1),
+        0 0 60px rgba(0, 255, 255, 0.8);
+    }
   }
 
   .timeline-content {
-    background: rgba(26, 26, 46, 0.6);
-    border: 1px solid #27272a;
-    border-radius: 12px;
+    background: rgba(10, 10, 20, 0.9);
+    border: 3px solid #00ffff;
+    border-radius: 0;
     padding: 1.5rem;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    box-shadow: 6px 6px 0 #ff00ff;
+  }
+
+  .timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top right, rgba(255, 0, 255, 0.1), transparent 50%);
+    pointer-events: none;
   }
 
   .timeline-content:hover {
-    border-color: #00d4ff;
-    transform: translateX(8px);
+    border-color: #ffff00;
+    transform: translate(-4px, -4px);
+    box-shadow: 10px 10px 0 #ff00ff;
   }
 
   .timeline-header {
@@ -175,14 +238,19 @@
   }
 
   h3 {
-    font-size: 1.25rem;
-    color: #e4e4e7;
+    font-size: 1.4rem;
+    color: #fff;
     margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 0 #ff00ff;
   }
 
   .company {
-    color: #00d4ff;
-    font-weight: 500;
+    color: #00ffff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
   }
 
   .meta {
@@ -190,34 +258,50 @@
   }
 
   .period {
-    display: block;
-    color: #a1a1aa;
+    display: inline-block;
+    background: linear-gradient(135deg, #ff00ff, #00ffff);
+    color: #000;
+    padding: 0.25rem 0.75rem;
     font-family: 'Fira Code', monospace;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
   }
 
   .location {
-    color: #71717a;
+    color: #a1a1aa;
     font-size: 0.85rem;
+    display: block;
   }
 
   ul {
     list-style: none;
     padding: 0;
+    margin-top: 1rem;
   }
 
   li {
     position: relative;
     padding-left: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     color: #a1a1aa;
+    transition: all 0.3s ease;
+  }
+
+  li:hover {
+    color: #fff;
+    transform: translateX(5px);
   }
 
   li::before {
-    content: '▹';
+    content: '';
     position: absolute;
     left: 0;
-    color: #00d4ff;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    background: #ffff00;
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
   }
 
   @media (max-width: 600px) {
@@ -227,6 +311,16 @@
 
     .meta {
       text-align: left;
+    }
+
+    .timeline {
+      padding-left: 2rem;
+    }
+
+    .timeline-marker {
+      left: -2.5rem;
+      width: 16px;
+      height: 16px;
     }
   }
 </style>

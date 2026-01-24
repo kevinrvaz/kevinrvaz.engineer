@@ -67,43 +67,96 @@
         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
         <circle cx="12" cy="10" r="3"/>
       </svg>
-      <span>Bangalore, India (UTC +05:30)</span>
+      <span>Bengaluru, India (UTC +05:30)</span>
     </div>
   </div>
 </section>
 
 <style>
   section {
-    min-height: 60vh;
+    min-height: 70vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+  }
+
+  section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: conic-gradient(
+      from 0deg,
+      transparent,
+      rgba(255, 0, 255, 0.1) 60deg,
+      transparent 120deg,
+      rgba(0, 255, 255, 0.1) 180deg,
+      transparent 240deg,
+      rgba(255, 255, 0, 0.1) 300deg,
+      transparent
+    );
+    border-radius: 50%;
+    animation: rotate-bg 20s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes rotate-bg {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
   }
 
   .contact-content {
     text-align: center;
-    max-width: 600px;
+    max-width: 650px;
+    position: relative;
+    z-index: 1;
   }
 
   .contact-intro {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: #a1a1aa;
     margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    border-left: 4px solid;
+    border-image: linear-gradient(to bottom, #ff00ff, #00ffff) 1;
+    text-align: left;
+    background: rgba(10, 10, 20, 0.5);
   }
 
   .goals-section {
-    background: rgba(26, 26, 46, 0.6);
-    border: 1px solid #27272a;
-    border-radius: 12px;
-    padding: 1.5rem;
+    background: rgba(10, 10, 20, 0.9);
+    border: 3px solid #ffff00;
+    border-radius: 0;
+    padding: 2rem;
     margin-bottom: 2.5rem;
     text-align: left;
+    position: relative;
+    box-shadow: 6px 6px 0 #ff00ff;
+  }
+
+  .goals-section::before {
+    content: '2026';
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    background: linear-gradient(135deg, #ff00ff, #00ffff);
+    color: #000;
+    padding: 0.25rem 1rem;
+    font-weight: 900;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
   }
 
   .goals-section h3 {
-    color: #00d4ff;
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
+    color: #ffff00;
+    font-size: 1.3rem;
+    margin-bottom: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
   }
 
   .goals-section ul {
@@ -113,16 +166,27 @@
 
   .goals-section li {
     position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: 0.5rem;
-    color: #a1a1aa;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .goals-section li:hover {
+    transform: translateX(10px);
+    color: #00ffff;
   }
 
   .goals-section li::before {
-    content: '→';
+    content: '';
     position: absolute;
     left: 0;
-    color: #00ffcc;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background: #00ffff;
+    clip-path: polygon(0 50%, 100% 0, 100% 100%);
   }
 
   .social-links {
@@ -130,42 +194,85 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
 
   .social-link {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.25rem;
-    background: rgba(26, 26, 46, 0.6);
-    border: 1px solid #27272a;
-    border-radius: 8px;
-    color: #a1a1aa;
-    transition: all 0.3s ease;
+    gap: 0.75rem;
+    padding: 0.85rem 1.5rem;
+    background: rgba(10, 10, 20, 0.9);
+    border: 3px solid #00ffff;
+    border-radius: 0;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    box-shadow: 4px 4px 0 #ff00ff;
   }
 
   .social-link:hover {
-    border-color: #00d4ff;
-    color: #00d4ff;
-    transform: translateY(-3px);
+    background: #00ffff;
+    color: #000;
+    transform: translate(-4px, -4px);
+    box-shadow: 8px 8px 0 #ff00ff;
+    border-color: #00ffff;
   }
 
   .social-link svg {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
+    transition: transform 0.3s ease;
+  }
+
+  .social-link:hover svg {
+    transform: rotate(360deg) scale(1.2);
   }
 
   .location {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    color: #71717a;
-    font-size: 0.95rem;
+    gap: 0.75rem;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, rgba(255, 0, 255, 0.2), rgba(0, 255, 255, 0.2));
+    border: 2px solid;
+    border-image: linear-gradient(135deg, #ff00ff, #00ffff) 1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
   }
 
   .location svg {
-    color: #00d4ff;
+    color: #ffff00;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 0, 0.5));
+    animation: location-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes location-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+
+  @media (max-width: 600px) {
+    section::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .social-link {
+      padding: 0.75rem 1rem;
+      font-size: 0.75rem;
+    }
+
+    .social-link span {
+      display: none;
+    }
   }
 </style>

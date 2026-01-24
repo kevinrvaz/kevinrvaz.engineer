@@ -117,28 +117,66 @@
   .featured-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 3rem;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    perspective: 1000px;
   }
 
   .project-card {
-    background: rgba(26, 26, 46, 0.6);
-    border: 1px solid #27272a;
-    border-radius: 12px;
+    background: rgba(10, 10, 20, 0.95);
+    border: 3px solid #00ffff;
+    border-radius: 0;
     padding: 1.75rem;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     flex-direction: column;
+    position: relative;
+    box-shadow: 6px 6px 0 #ff00ff;
+    transform-style: preserve-3d;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #ff00ff, #00ffff, #ffff00);
+  }
+
+  .project-card::after {
+    content: 'PROJECT';
+    position: absolute;
+    top: 10px;
+    right: -30px;
+    background: #ffff00;
+    color: #000;
+    padding: 0.25rem 2rem;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    transform: rotate(45deg);
+    box-shadow: 2px 2px 0 #000;
   }
 
   .project-card:hover {
-    border-color: #00d4ff;
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: #ffff00;
+    transform: translate(-8px, -8px) rotateX(5deg) rotateY(-5deg);
+    box-shadow:
+      16px 16px 0 #ff00ff,
+      0 0 30px rgba(255, 0, 255, 0.3);
+  }
+
+  .project-card.featured::after {
+    content: 'FEATURED';
+    background: #ff00ff;
+    color: #fff;
   }
 
   .project-card.featured {
-    background: linear-gradient(135deg, rgba(26, 26, 46, 0.8), rgba(22, 33, 62, 0.8));
+    background: linear-gradient(135deg, rgba(10, 10, 20, 0.95), rgba(30, 10, 40, 0.95));
+    border-color: #ff00ff;
   }
 
   .project-header {
@@ -149,9 +187,16 @@
   }
 
   .folder-icon {
-    width: 40px;
-    height: 40px;
-    color: #00d4ff;
+    width: 45px;
+    height: 45px;
+    color: #00ffff;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
+    animation: icon-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes icon-pulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5)); }
+    50% { transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.8)); }
   }
 
   .project-links {
@@ -162,31 +207,45 @@
   .project-links a,
   .project-header > a {
     color: #a1a1aa;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+    border: 2px solid transparent;
   }
 
   .project-links a:hover,
   .project-header > a:hover {
-    color: #00d4ff;
+    color: #00ffff;
+    border-color: #00ffff;
+    box-shadow: 3px 3px 0 #ff00ff;
+    transform: translate(-2px, -2px);
   }
 
   h3 {
-    font-size: 1.35rem;
-    color: #e4e4e7;
+    font-size: 1.5rem;
+    color: #fff;
     margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 0 #ff00ff;
   }
 
   h4 {
-    font-size: 1.1rem;
-    color: #e4e4e7;
+    font-size: 1.2rem;
+    color: #fff;
     margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0 #00ffff;
   }
 
   .stars {
-    color: #ffd700;
-    font-size: 0.9rem;
-    margin-bottom: 0.75rem;
     display: inline-block;
+    background: linear-gradient(135deg, #ffd700, #ffaa00);
+    color: #000;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 900;
+    margin-bottom: 0.75rem;
+    box-shadow: 3px 3px 0 #000;
   }
 
   p {
@@ -194,6 +253,7 @@
     font-size: 0.95rem;
     flex-grow: 1;
     margin-bottom: 1.25rem;
+    line-height: 1.6;
   }
 
   .tags {
@@ -204,50 +264,87 @@
   }
 
   .tag {
-    background: rgba(0, 212, 255, 0.1);
-    color: #00d4ff;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
+    background: transparent;
+    color: #00ffff;
+    padding: 0.3rem 0.75rem;
+    border-radius: 0;
+    font-size: 0.75rem;
     font-family: 'Fira Code', monospace;
+    font-weight: 600;
+    border: 2px solid #00ffff;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .tag:hover {
+    background: #00ffff;
+    color: #000;
+    transform: scale(1.1);
   }
 
   .section-subtitle {
-    font-size: 1.5rem;
-    color: #e4e4e7;
-    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 0 #00ffff;
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-subtitle::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #00ffff, #ff00ff);
   }
 
   .other-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.25rem;
+    gap: 1.5rem;
     margin-bottom: 2rem;
   }
 
   .more-projects {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 3rem;
   }
 
   .view-more {
     display: inline-block;
-    padding: 0.875rem 2rem;
-    border: 1px solid #00d4ff;
-    border-radius: 8px;
-    color: #00d4ff;
-    font-weight: 500;
-    transition: all 0.3s ease;
+    padding: 1rem 2.5rem;
+    border: 3px solid #ffff00;
+    border-radius: 0;
+    color: #ffff00;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    background: transparent;
+    box-shadow: 5px 5px 0 #ff00ff;
   }
 
   .view-more:hover {
-    background: rgba(0, 212, 255, 0.1);
-    transform: translateY(-2px);
+    background: #ffff00;
+    color: #000;
+    transform: translate(-5px, -5px);
+    box-shadow: 10px 10px 0 #ff00ff;
   }
 
   @media (max-width: 400px) {
     .featured-grid {
       grid-template-columns: 1fr;
+    }
+
+    .project-card::after {
+      display: none;
     }
   }
 </style>
