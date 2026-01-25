@@ -20,11 +20,6 @@
 </script>
 
 <section id="hero" class:visible>
-  <!-- Comic book style background elements -->
-  <div class="comic-bg">
-    <div class="comic-burst"></div>
-  </div>
-
   <div class="hero-content" style="transform: perspective(1000px) rotateX({mouseY * 0.1}deg) rotateY({mouseX * 0.1}deg)">
     <p class="greeting">
       <span class="comic-bubble">Hi, my name is</span>
@@ -98,37 +93,6 @@
   section.visible {
     opacity: 1;
     transform: translateY(0) scale(1);
-  }
-
-  /* Comic book background effects */
-  .comic-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-  }
-
-  .comic-burst {
-    position: absolute;
-    top: 20%;
-    right: 10%;
-    width: 300px;
-    height: 300px;
-    background: conic-gradient(
-      from 0deg,
-      transparent,
-      rgba(255, 0, 255, 0.1) 10deg,
-      transparent 20deg
-    );
-    border-radius: 50%;
-    animation: spin 20s linear infinite;
-  }
-
-  @keyframes spin {
-    to { transform: rotate(360deg); }
   }
 
   @keyframes float-3d {
@@ -749,10 +713,6 @@
 
     .tagline {
       justify-content: center;
-    }
-
-    .comic-burst {
-      display: none;
     }
   }
 </style>

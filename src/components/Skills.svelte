@@ -71,12 +71,23 @@
     border: 3px solid #00ffff;
     border-radius: 0;
     padding: 1.5rem;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
     position: relative;
     box-shadow: 6px 6px 0 #ff00ff;
     transform-style: preserve-3d;
     animation: card-float 6s ease-in-out infinite;
     animation-delay: calc(var(--i, 0) * 0.5s);
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  .skill-category:hover {
+    border-color: #ffff00;
+    animation-play-state: paused;
+    transform: translate(-8px, -8px) rotateX(5deg) rotateY(-5deg);
+    box-shadow:
+      16px 16px 0 #ff00ff,
+      0 0 30px rgba(255, 0, 255, 0.3);
   }
 
   .skill-category:nth-child(1) { --i: 0; }
@@ -94,38 +105,6 @@
     75% {
       transform: translateY(-10px) rotateX(-2deg) rotateY(2deg);
     }
-  }
-
-  .skill-category::before {
-    content: '';
-    position: absolute;
-    top: -3px;
-    left: -3px;
-    right: -3px;
-    bottom: -3px;
-    background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
-    background-size: 400% 400%;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    animation: gradient-shift 3s ease infinite;
-  }
-
-  @keyframes gradient-shift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  .skill-category:hover::before {
-    opacity: 1;
-  }
-
-  .skill-category:hover {
-    animation-play-state: paused;
-    transform: translate(-6px, -6px) scale(1.02);
-    box-shadow: 12px 12px 0 #ff00ff;
-    border-color: #ffff00;
   }
 
   .skill-category h3 {
@@ -163,33 +142,6 @@
     font-size: 0.9rem;
     font-weight: 600;
     border: 2px solid #00ffff;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    position: relative;
-    overflow: hidden;
-    cursor: default;
-  }
-
-  .skill::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
-    transition: left 0.5s ease;
-  }
-
-  .skill:hover::before {
-    left: 100%;
-  }
-
-  .skill:hover {
-    background: #00ffff;
-    color: #000;
-    border-color: #00ffff;
-    transform: scale(1.1) rotate(-2deg);
-    box-shadow: 4px 4px 0 #ff00ff;
   }
 
   .achievements-title {

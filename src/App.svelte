@@ -652,18 +652,25 @@
         <line x1="57" y1="46" x2="61" y2="46" stroke="rgba(100,20,20,0.6)" stroke-width="1"/><line x1="57" y1="50" x2="61" y2="50" stroke="rgba(100,20,20,0.6)" stroke-width="1"/><line x1="57" y1="54" x2="61" y2="54" stroke="rgba(100,20,20,0.6)" stroke-width="1"/>
         <line x1="46" y1="39" x2="46" y2="43" stroke="rgba(100,20,20,0.6)" stroke-width="1"/><line x1="50" y1="39" x2="50" y2="43" stroke="rgba(100,20,20,0.6)" stroke-width="1"/><line x1="54" y1="39" x2="54" y2="43" stroke="rgba(100,20,20,0.6)" stroke-width="1"/>
         <line x1="46" y1="57" x2="46" y2="61" stroke="rgba(100,20,20,0.6)" stroke-width="1"/><line x1="50" y1="57" x2="50" y2="61" stroke="rgba(100,20,20,0.6)" stroke-width="1"/><line x1="54" y1="57" x2="54" y2="61" stroke="rgba(100,20,20,0.6)" stroke-width="1"/>
-        <!-- PLCC socket style -->
+        <!-- PLCC socket style with traces -->
         <rect x="5" y="5" width="16" height="16" fill="rgba(5,5,15,0.7)" stroke="rgba(120,30,30,0.6)" stroke-width="1"/>
         <rect x="7" y="7" width="12" height="12" fill="rgba(15,5,5,0.9)" stroke="rgba(120,30,30,0.8)" stroke-width="0.5"/>
         <circle cx="9" cy="9" r="1" fill="rgba(120,30,30,0.7)"/>
-        <!-- Electrolytic capacitor -->
+        <line x1="21" y1="10" x2="30" y2="10" stroke="rgba(100,20,20,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="1s" repeatCount="indefinite"/></line>
+        <line x1="30" y1="10" x2="30" y2="20" stroke="rgba(100,20,20,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="0.9s" repeatCount="indefinite"/></line>
+        <line x1="13" y1="21" x2="13" y2="30" stroke="rgba(100,20,20,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="1.1s" repeatCount="indefinite"/></line>
+        <!-- Electrolytic capacitor with traces -->
         <circle cx="85" cy="85" r="6" fill="rgba(5,5,15,0.8)" stroke="rgba(120,30,30,0.7)" stroke-width="1"/>
         <line x1="83" y1="85" x2="87" y2="85" stroke="rgba(120,30,30,0.5)" stroke-width="0.5"/>
-        <line x1="85" y1="79" x2="85" y2="77" stroke="rgba(100,20,20,0.6)" stroke-width="1"/>
-        <line x1="85" y1="91" x2="85" y2="93" stroke="rgba(100,20,20,0.6)" stroke-width="1"/>
-        <!-- Diode -->
+        <line x1="85" y1="79" x2="85" y2="70" stroke="rgba(100,20,20,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="1s" repeatCount="indefinite"/></line>
+        <line x1="85" y1="70" x2="80" y2="70" stroke="rgba(100,20,20,0.5)" stroke-width="1"/><line x1="80" y1="70" x2="80" y2="50" stroke="rgba(100,20,20,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="12" to="0" dur="0.9s" repeatCount="indefinite"/></line>
+        <line x1="85" y1="91" x2="85" y2="95" stroke="rgba(100,20,20,0.6)" stroke-width="1"/>
+        <!-- Diode with traces -->
         <polygon points="10,75 18,80 10,85" fill="rgba(120,30,30,0.5)" stroke="rgba(120,30,30,0.7)" stroke-width="0.5"/>
         <line x1="18" y1="75" x2="18" y2="85" stroke="rgba(120,30,30,0.7)" stroke-width="1"/>
+        <line x1="5" y1="80" x2="10" y2="80" stroke="rgba(100,20,20,0.5)" stroke-width="1"/>
+        <line x1="0" y1="80" x2="5" y2="80" stroke="rgba(100,20,20,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="0.8s" repeatCount="indefinite"/></line>
+        <line x1="18" y1="80" x2="25" y2="80" stroke="rgba(100,20,20,0.5)" stroke-width="1"/><line x1="25" y1="80" x2="25" y2="50" stroke="rgba(100,20,20,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="1s" repeatCount="indefinite"/></line>
       </pattern>
 
       <!-- BLUE Pattern - dark shade (navy) -->
@@ -683,19 +690,22 @@
         <line x1="60" y1="44" x2="65" y2="44" stroke="rgba(30,40,100,0.6)" stroke-width="1"/><line x1="60" y1="50" x2="65" y2="50" stroke="rgba(30,40,100,0.6)" stroke-width="1"/><line x1="60" y1="56" x2="65" y2="56" stroke="rgba(30,40,100,0.6)" stroke-width="1"/>
         <line x1="44" y1="35" x2="44" y2="40" stroke="rgba(30,40,100,0.6)" stroke-width="1"/><line x1="50" y1="35" x2="50" y2="40" stroke="rgba(30,40,100,0.6)" stroke-width="1"/><line x1="56" y1="35" x2="56" y2="40" stroke="rgba(30,40,100,0.6)" stroke-width="1"/>
         <line x1="44" y1="60" x2="44" y2="65" stroke="rgba(30,40,100,0.6)" stroke-width="1"/><line x1="50" y1="60" x2="50" y2="65" stroke="rgba(30,40,100,0.6)" stroke-width="1"/><line x1="56" y1="60" x2="56" y2="65" stroke="rgba(30,40,100,0.6)" stroke-width="1"/>
-        <!-- USB connector style -->
+        <!-- USB connector style with traces -->
         <rect x="5" y="75" width="14" height="8" fill="rgba(5,5,15,0.9)" stroke="rgba(40,50,120,0.7)" stroke-width="1" rx="1"/>
         <rect x="7" y="77" width="10" height="4" fill="rgba(30,40,100,0.4)" stroke="none"/>
-        <!-- Voltage regulator TO-220 -->
+        <line x1="12" y1="75" x2="12" y2="70" stroke="rgba(30,40,100,0.5)" stroke-width="1"/><line x1="12" y1="70" x2="20" y2="70" stroke="rgba(30,40,100,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="1s" repeatCount="indefinite"/></line>
+        <line x1="12" y1="83" x2="12" y2="90" stroke="rgba(30,40,100,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="0.9s" repeatCount="indefinite"/></line>
+        <line x1="19" y1="79" x2="30" y2="79" stroke="rgba(30,40,100,0.5)" stroke-width="1"/><line x1="30" y1="79" x2="30" y2="50" stroke="rgba(30,40,100,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="12" to="0" dur="1.1s" repeatCount="indefinite"/></line>
+        <!-- Voltage regulator TO-220 with traces -->
         <rect x="80" y="5" width="15" height="10" fill="rgba(5,5,15,0.9)" stroke="rgba(40,50,120,0.7)" stroke-width="1"/>
         <rect x="82" y="3" width="11" height="4" fill="rgba(30,40,100,0.3)" stroke="rgba(40,50,120,0.5)" stroke-width="0.5"/>
-        <line x1="84" y1="15" x2="84" y2="18" stroke="rgba(30,40,100,0.6)" stroke-width="1"/>
-        <line x1="88" y1="15" x2="88" y2="18" stroke="rgba(30,40,100,0.6)" stroke-width="1"/>
-        <line x1="92" y1="15" x2="92" y2="18" stroke="rgba(30,40,100,0.6)" stroke-width="1"/>
-        <!-- Inductor coil -->
+        <line x1="84" y1="15" x2="84" y2="20" stroke="rgba(30,40,100,0.6)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="0.8s" repeatCount="indefinite"/></line>
+        <line x1="88" y1="15" x2="88" y2="20" stroke="rgba(30,40,100,0.6)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="0.9s" repeatCount="indefinite"/></line>
+        <line x1="92" y1="15" x2="92" y2="20" stroke="rgba(30,40,100,0.6)" stroke-width="1"/><line x1="92" y1="20" x2="100" y2="20" stroke="rgba(30,40,100,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="12" to="0" dur="1s" repeatCount="indefinite"/></line>
+        <!-- Inductor coil with traces -->
         <path d="M5,5 Q8,2 11,5 Q14,8 17,5 Q20,2 23,5" fill="none" stroke="rgba(40,50,120,0.7)" stroke-width="1.5"/>
-        <line x1="3" y1="5" x2="5" y2="5" stroke="rgba(30,40,100,0.6)" stroke-width="1"/>
-        <line x1="23" y1="5" x2="25" y2="5" stroke="rgba(30,40,100,0.6)" stroke-width="1"/>
+        <line x1="0" y1="5" x2="5" y2="5" stroke="rgba(30,40,100,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="0.8s" repeatCount="indefinite"/></line>
+        <line x1="23" y1="5" x2="30" y2="5" stroke="rgba(30,40,100,0.5)" stroke-width="1"/><line x1="30" y1="5" x2="30" y2="20" stroke="rgba(30,40,100,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="1s" repeatCount="indefinite"/></line>
       </pattern>
 
       <!-- ORANGE Pattern - dark shade (burnt orange/brown) -->
@@ -715,22 +725,25 @@
         <line x1="56" y1="47" x2="60" y2="47" stroke="rgba(100,50,0,0.6)" stroke-width="1"/><line x1="56" y1="53" x2="60" y2="53" stroke="rgba(100,50,0,0.6)" stroke-width="1"/>
         <line x1="47" y1="40" x2="47" y2="44" stroke="rgba(100,50,0,0.6)" stroke-width="1"/><line x1="53" y1="40" x2="53" y2="44" stroke="rgba(100,50,0,0.6)" stroke-width="1"/>
         <line x1="47" y1="56" x2="47" y2="60" stroke="rgba(100,50,0,0.6)" stroke-width="1"/><line x1="53" y1="56" x2="53" y2="60" stroke="rgba(100,50,0,0.6)" stroke-width="1"/>
-        <!-- Memory chip style -->
+        <!-- Memory chip style with traces -->
         <rect x="5" y="5" width="20" height="12" fill="rgba(5,5,15,0.9)" stroke="rgba(120,60,0,0.7)" stroke-width="1"/>
         <circle cx="8" cy="8" r="1" fill="rgba(120,60,0,0.7)"/>
-        <line x1="8" y1="17" x2="8" y2="20" stroke="rgba(100,50,0,0.6)" stroke-width="1"/>
+        <line x1="8" y1="17" x2="8" y2="25" stroke="rgba(100,50,0,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="1s" repeatCount="indefinite"/></line>
         <line x1="12" y1="17" x2="12" y2="20" stroke="rgba(100,50,0,0.6)" stroke-width="1"/>
-        <line x1="16" y1="17" x2="16" y2="20" stroke="rgba(100,50,0,0.6)" stroke-width="1"/>
-        <line x1="20" y1="17" x2="20" y2="20" stroke="rgba(100,50,0,0.6)" stroke-width="1"/>
-        <!-- LED -->
+        <line x1="16" y1="17" x2="16" y2="25" stroke="rgba(100,50,0,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="0.9s" repeatCount="indefinite"/></line>
+        <line x1="20" y1="17" x2="20" y2="20" stroke="rgba(100,50,0,0.6)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="1.1s" repeatCount="indefinite"/></line>
+        <line x1="25" y1="11" x2="35" y2="11" stroke="rgba(100,50,0,0.5)" stroke-width="1"/><line x1="35" y1="11" x2="35" y2="20" stroke="rgba(100,50,0,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="0.8s" repeatCount="indefinite"/></line>
+        <!-- LED with traces -->
         <circle cx="85" cy="85" r="4" fill="rgba(120,60,0,0.4)" stroke="rgba(120,60,0,0.8)" stroke-width="1"/>
         <circle cx="85" cy="85" r="2" fill="rgba(150,80,0,0.6)"/>
-        <line x1="85" y1="89" x2="85" y2="92" stroke="rgba(100,50,0,0.6)" stroke-width="1"/>
+        <line x1="85" y1="89" x2="85" y2="95" stroke="rgba(100,50,0,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="0.9s" repeatCount="indefinite"/></line>
         <line x1="83" y1="89" x2="83" y2="92" stroke="rgba(100,50,0,0.6)" stroke-width="1"/>
-        <!-- Fuse -->
+        <line x1="85" y1="81" x2="85" y2="70" stroke="rgba(100,50,0,0.5)" stroke-width="1"/><line x1="85" y1="70" x2="80" y2="70" stroke="rgba(100,50,0,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="12" to="0" dur="1s" repeatCount="indefinite"/></line>
+        <line x1="80" y1="70" x2="80" y2="50" stroke="rgba(100,50,0,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="1.1s" repeatCount="indefinite"/></line>
+        <!-- Fuse with traces -->
         <rect x="75" y="5" width="8" height="4" fill="rgba(120,60,0,0.3)" stroke="rgba(120,60,0,0.6)" stroke-width="0.5" rx="1"/>
-        <line x1="73" y1="7" x2="75" y2="7" stroke="rgba(100,50,0,0.6)" stroke-width="1"/>
-        <line x1="83" y1="7" x2="85" y2="7" stroke="rgba(100,50,0,0.6)" stroke-width="1"/>
+        <line x1="70" y1="7" x2="75" y2="7" stroke="rgba(100,50,0,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="0.8s" repeatCount="indefinite"/></line>
+        <line x1="83" y1="7" x2="90" y2="7" stroke="rgba(100,50,0,0.5)" stroke-width="1"/><line x1="90" y1="7" x2="90" y2="20" stroke="rgba(100,50,0,0.5)" stroke-width="1" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="1s" repeatCount="indefinite"/></line>
       </pattern>
 
       <!-- Glow filters -->
@@ -961,9 +974,6 @@
   <Skills />
   <Contact />
 </main>
-<footer>
-  <p>Built with Svelte</p>
-</footer>
 
 <style>
   /* Neural Network Canvas */
@@ -1193,21 +1203,6 @@
 
   main {
     position: relative;
-  }
-
-  footer {
-    text-align: center;
-    padding: 2rem;
-    color: #71717a;
-    border-top: 3px solid;
-    border-image: linear-gradient(90deg, #ff00ff, #00ffff, #ffff00) 1;
-    position: relative;
-  }
-
-  footer p {
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 3px;
   }
 
   /* Circuit Board Background Styles */

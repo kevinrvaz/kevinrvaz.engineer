@@ -127,12 +127,15 @@
     border: 3px solid #00ffff;
     border-radius: 0;
     padding: 1.75rem;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
     display: flex;
     flex-direction: column;
     position: relative;
     box-shadow: 6px 6px 0 #ff00ff;
     transform-style: preserve-3d;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 
   .project-card::before {
@@ -162,7 +165,7 @@
 
   .project-card:hover {
     border-color: #ffff00;
-    transform: translate(-8px, -8px) rotateX(5deg) rotateY(-5deg);
+    transform: translate(-8px, -8px) rotateX(5deg) rotateY(-5deg) translateZ(0);
     box-shadow:
       16px 16px 0 #ff00ff,
       0 0 30px rgba(255, 0, 255, 0.3);
@@ -207,9 +210,13 @@
   .project-links a,
   .project-header > a {
     color: #a1a1aa;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     padding: 0.5rem;
     border: 2px solid transparent;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    display: inline-block;
   }
 
   .project-links a:hover,
@@ -217,7 +224,7 @@
     color: #00ffff;
     border-color: #00ffff;
     box-shadow: 3px 3px 0 #ff00ff;
-    transform: translate(-2px, -2px);
+    transform: translate(-2px, -2px) translateZ(0);
   }
 
   h3 {
@@ -272,15 +279,8 @@
     font-family: 'Fira Code', monospace;
     font-weight: 600;
     border: 2px solid #00ffff;
-    transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
-  }
-
-  .tag:hover {
-    background: #00ffff;
-    color: #000;
-    transform: scale(1.1);
   }
 
   .section-subtitle {
@@ -325,16 +325,19 @@
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 2px;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     background: transparent;
     box-shadow: 5px 5px 0 #ff00ff;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 
   .view-more:hover {
     background: #ffff00;
     color: #000;
-    transform: translate(-5px, -5px);
+    transform: translate(-5px, -5px) translateZ(0);
     box-shadow: 10px 10px 0 #ff00ff;
   }
 
