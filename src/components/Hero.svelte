@@ -17,44 +17,56 @@
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   });
+
+  function handleNavClick(event, href) {
+    event.preventDefault();
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      history.pushState(null, '', href);
+    }
+  }
 </script>
 
 <section id="hero" class:visible>
-  <div class="hero-content" style="transform: perspective(1000px) rotateX({mouseY * 0.1}deg) rotateY({mouseX * 0.1}deg)">
-    <p class="greeting">
-      <span class="comic-bubble">Hi, my name is</span>
-    </p>
-    <h1 class="glitch-title" data-text="Kevin Rohan Vaz">
-      <span class="glitch-layer glitch-r" aria-hidden="true">Kevin Rohan Vaz</span>
-      <span class="glitch-layer glitch-g" aria-hidden="true">Kevin Rohan Vaz</span>
-      <span class="glitch-layer glitch-b" aria-hidden="true">Kevin Rohan Vaz</span>
-      <span class="glitch-main">
-        <span class="name-word"><span class="letter-k">K</span><span class="letter">e</span><span class="letter">v</span><span class="letter">i</span><span class="letter">n</span></span>{' '}
-        <span class="name-word"><span class="letter-r">R</span><span class="letter">o</span><span class="letter">h</span><span class="letter">a</span><span class="letter">n</span></span>{' '}
-        <span class="name-word"><span class="letter-v">V</span><span class="letter">a</span><span class="letter">z</span></span>
-      </span>
-    </h1>
-    <h2 class="tagline">
-      <span class="word">I</span>
-      <span class="word">build</span>
-      <span class="word highlight">things</span>
-      <span class="word">for</span>
-      <span class="word">the</span>
-      <span class="word highlight">web</span>
-      <span class="word">and</span>
-      <span class="word highlight">AI.</span>
-    </h2>
-    <p class="description">
-      Senior Software Engineer at <a href="https://smartbear.com" target="_blank" rel="noopener noreferrer">SmartBear</a>,
-      specializing in Software Engineering, Machine Learning, and Generative AI.
-      Based in Bengaluru, India.
-    </p>
+  <div class="hero-left">
+    <div class="hero-content" style="transform: perspective(1000px) rotateX({mouseY * 0.1}deg) rotateY({mouseX * 0.1}deg)">
+      <p class="greeting">
+        <span class="comic-bubble">Hi, my name is</span>
+      </p>
+      <h1 class="glitch-title" data-text="Kevin Rohan Vaz">
+        <span class="glitch-layer glitch-r" aria-hidden="true">Kevin Rohan Vaz</span>
+        <span class="glitch-layer glitch-g" aria-hidden="true">Kevin Rohan Vaz</span>
+        <span class="glitch-layer glitch-b" aria-hidden="true">Kevin Rohan Vaz</span>
+        <span class="glitch-main">
+          <span class="name-word"><span class="letter-k">K</span><span class="letter">e</span><span class="letter">v</span><span class="letter">i</span><span class="letter">n</span></span>{' '}
+          <span class="name-word"><span class="letter-r">R</span><span class="letter">o</span><span class="letter">h</span><span class="letter">a</span><span class="letter">n</span></span>{' '}
+          <span class="name-word"><span class="letter-v">V</span><span class="letter">a</span><span class="letter">z</span></span>
+        </span>
+      </h1>
+      <h2 class="tagline">
+        <span class="word">I</span>
+        <span class="word">build</span>
+        <span class="word highlight">things</span>
+        <span class="word">for</span>
+        <span class="word">the</span>
+        <span class="word highlight">web</span>
+        <span class="word">and</span>
+        <span class="word highlight">AI.</span>
+      </h2>
+      <p class="description">
+        Senior Software Engineer at <a href="https://smartbear.com" target="_blank" rel="noopener noreferrer">SmartBear</a>,
+        specializing in Software Engineering, Machine Learning, and Generative AI.
+        Based in Bengaluru, India.
+      </p>
+    </div>
     <div class="cta-buttons">
-      <a href="#projects" class="btn primary comic-btn">
+      <a href="#projects" class="btn primary comic-btn" on:click={(e) => handleNavClick(e, '#projects')}>
         <span class="btn-text">View My Work</span>
         <span class="btn-shadow"></span>
       </a>
-      <a href="#contact" class="btn secondary comic-btn">
+      <a href="#contact" class="btn secondary comic-btn" on:click={(e) => handleNavClick(e, '#contact')}>
         <span class="btn-text">Get In Touch</span>
         <span class="btn-shadow"></span>
       </a>
@@ -100,8 +112,11 @@
     50% { transform: translateY(-20px) rotateX(5deg); }
   }
 
-  .hero-content {
+  .hero-left {
     flex: 1;
+  }
+
+  .hero-content {
     transition: transform 0.1s ease-out;
     transform-style: preserve-3d;
   }
@@ -162,6 +177,8 @@
       3px 3px 0 #00ffff,
       6px 6px 0 rgba(0, 0, 0, 0.3);
     animation: glitch-main 8s infinite;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 
   /* Glitch color layers */
@@ -405,6 +422,9 @@
     color: #ffff00;
     animation: letter-bounce 0.5s ease infinite;
     animation-delay: calc(var(--i, 0) * 0.1s);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
   }
 
   .letter-k { --i: 0; }
@@ -434,6 +454,8 @@
   .name-word {
     display: inline-block;
     white-space: nowrap;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 
   .tagline {
@@ -484,7 +506,6 @@
     font-size: 1.1rem;
     color: #a1a1aa;
     max-width: 540px;
-    margin-bottom: 2rem;
     position: relative;
   }
 
@@ -492,6 +513,7 @@
     display: flex;
     gap: 1.5rem;
     flex-wrap: wrap;
+    margin-top: 2rem;
   }
 
   .comic-btn {
@@ -691,6 +713,12 @@
     section {
       flex-direction: column;
       text-align: center;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .description {
