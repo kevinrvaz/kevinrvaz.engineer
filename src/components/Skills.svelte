@@ -2,11 +2,11 @@
   const skillCategories = [
     {
       title: 'Languages',
-      skills: ['Python', 'JavaScript', 'Java', 'Hack Language']
+      skills: ['Python', 'JavaScript', 'Rust', 'Hack Language']
     },
     {
       title: 'Frameworks & Libraries',
-      skills: ['React', 'Node.js', 'Django', 'Spring Boot', 'TensorFlow', 'Langchain']
+      skills: ['React', 'Node.js', 'Django', 'FastAPI', 'TensorFlow', 'PyTorch', 'Langchain']
     },
     {
       title: 'AI & Machine Learning',
