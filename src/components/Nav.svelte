@@ -1,5 +1,9 @@
 <script>
+  import { onMount } from 'svelte';
+
   let isMenuOpen = false;
+  let isMusicPlaying = true;
+  let audioElement;
 
   const navItems = [
     { href: '#about', label: 'About' },
@@ -16,6 +20,38 @@
   function closeMenu() {
     isMenuOpen = false;
   }
+
+  function toggleMusic() {
+    if (isMusicPlaying) {
+      audioElement.pause();
+    } else {
+      audioElement.play();
+    }
+    isMusicPlaying = !isMusicPlaying;
+  }
+
+  onMount(() => {
+    audioElement = new Audio('/bgmusic.mp3');
+    audioElement.loop = true;
+    audioElement.volume = 0.3;
+    isMusicPlaying = false;
+
+    const startMusic = () => {
+      if (!isMusicPlaying) {
+        audioElement.play().then(() => {
+          isMusicPlaying = true;
+        });
+      }
+      document.removeEventListener('click', startMusic);
+      document.removeEventListener('keydown', startMusic);
+      document.removeEventListener('touchstart', startMusic);
+    };
+
+    // Add listeners for first user interaction
+    document.addEventListener('click', startMusic);
+    document.addEventListener('keydown', startMusic);
+    document.addEventListener('touchstart', startMusic);
+  });
 </script>
 
 <nav>
@@ -36,6 +72,23 @@
         <a href="https://github.com/kevinrvaz" target="_blank" rel="noopener noreferrer" class="github-link">
           GitHub
         </a>
+      </li>
+      <li>
+        <button class="music-toggle" on:click={toggleMusic} aria-label="Toggle music">
+          {#if isMusicPlaying}
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+          {:else}
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+          {/if}
+        </button>
       </li>
     </ul>
   </div>
@@ -85,6 +138,7 @@
 
   ul {
     display: flex;
+    align-items: center;
     gap: 0.5rem;
     list-style: none;
   }
@@ -144,6 +198,36 @@
     transform: translate(-3px, -3px);
     box-shadow: 6px 6px 0 #ff00ff;
     text-shadow: none !important;
+  }
+
+  .music-toggle {
+    padding: 0.5rem;
+    border: 2px solid #ffff00;
+    background: transparent;
+    color: #ffff00;
+    box-shadow: 3px 3px 0 #ff00ff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .music-toggle:hover {
+    background: #ffff00;
+    color: #000;
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0 #ff00ff;
+  }
+
+  .music-toggle svg {
+    display: block;
+  }
+
+  li:has(.music-toggle) {
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
   }
 
   .menu-toggle {
