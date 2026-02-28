@@ -9,6 +9,7 @@
   import Nav from './components/Nav.svelte';
   import CodeSnippets from './components/CodeSnippets.svelte';
   import CircuitBoard from './components/CircuitBoard.svelte';
+  import OwlChatButton from './components/OwlChatButton.svelte';
   import { createNeuralNetwork } from './lib/neuralNetwork.js';
   import { createCodeSnippetManager } from './lib/codeSnippets.js';
   import { createCircuitTileManager } from './lib/circuitTiles.js';
@@ -87,6 +88,9 @@
   <Skills />
   <Contact />
 </main>
+
+<!-- Owl Chat Button -->
+<OwlChatButton />
 
 <style>
   .neural-canvas {
