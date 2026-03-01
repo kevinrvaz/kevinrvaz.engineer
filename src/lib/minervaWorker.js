@@ -58,10 +58,17 @@ function isSafari() {
 async function loadModel(progressCallback) {
   // Check WebGPU availability
   const hasWebGPU = await checkWebGPU();
-  usingWebGPU = hasWebGPU;
+  const useSafariBrowser = isSafari();
 
-  if (!hasWebGPU) {
-    self.postMessage({ type: "status", status: "WebGPU not available, using CPU (slower)..." });
+  // Safari: use WASM (CPU) as WebGPU support is limited
+  if (useSafariBrowser) {
+    usingWebGPU = false;
+    self.postMessage({ type: "status", status: "Safari detected, using optimized CPU mode..." });
+  } else {
+    usingWebGPU = hasWebGPU;
+    if (!hasWebGPU) {
+      self.postMessage({ type: "status", status: "WebGPU not available, using CPU (slower)..." });
+    }
   }
 
   // Load tokenizer
@@ -163,7 +170,7 @@ async function loadModel(progressCallback) {
   self.postMessage({ type: "status", status: "Warming up neural network..." });
 
   isModelLoaded = true;
-  return usingWebGPU;
+  console.log("Model loaded. Using WebGPU:", usingWebGPU);
 }
 
 function initCache() {
@@ -184,9 +191,24 @@ function initCache() {
 function updateCache(cache, outputs) {
   for (const [name, tensor] of Object.entries(outputs)) {
     if (name.startsWith("present_conv")) {
-      cache[name.replace("present_conv", "past_conv")] = tensor;
+      const cacheKey = name.replace("present_conv", "past_conv");
+      // Dispose old tensor before replacing
+      if (cache[cacheKey] && typeof cache[cacheKey].dispose === 'function') {
+        cache[cacheKey].dispose();
+      }
+      cache[cacheKey] = tensor;
     } else if (name.startsWith("present.")) {
-      cache[name.replace("present.", "past_key_values.")] = tensor;
+      const cacheKey = name.replace("present.", "past_key_values.");
+      // Dispose old tensor before replacing
+      if (cache[cacheKey] && typeof cache[cacheKey].dispose === 'function') {
+        cache[cacheKey].dispose();
+      }
+      cache[cacheKey] = tensor;
+    } else {
+      // Dispose non-cache outputs we don't need (like logits after processing)
+      if (typeof tensor.dispose === 'function') {
+        tensor.dispose();
+      }
     }
   }
 }
@@ -388,6 +410,13 @@ Answer questions helpfully using this information. Be concise but informative. O
 
     const outputs = await session.run(inputs);
 
+    // Dispose input tensors immediately after use
+    inputIdsTensor.dispose();
+    attentionMask.dispose();
+    if (inputs.position_ids) {
+      inputs.position_ids.dispose();
+    }
+
     const stepTime = performance.now() - stepStart;
     totalInferenceTime += stepTime;
     tokenCount++;
@@ -409,6 +438,9 @@ Answer questions helpfully using this information. Be concise but informative. O
     const vocabSize = logits.dims[2];
     const lastLogits = logits.data.slice((logits.dims[1] - 1) * vocabSize);
     const nextToken = sampleToken(lastLogits, 0.7, 0.9);
+
+    // Dispose logits tensor after extracting data
+    logits.dispose();
 
     generatedTokens.push(nextToken);
 
@@ -485,6 +517,17 @@ Answer questions helpfully using this information. Be concise but informative. O
     curLen++;
   }
 
+  // Dispose remaining cache tensors to free memory
+  for (const tensor of Object.values(cache)) {
+    if (tensor && typeof tensor.dispose === 'function') {
+      try {
+        tensor.dispose();
+      } catch (e) {
+        // Ignore disposal errors
+      }
+    }
+  }
+
   const finalAvgMs = tokenCount > 0 ? (totalInferenceTime / tokenCount).toFixed(0) : 0;
   const finalTokPerSec = tokenCount > 0 ? (1000 / (totalInferenceTime / tokenCount)).toFixed(1) : 0;
 
@@ -524,10 +567,11 @@ self.addEventListener("message", async (event) => {
 
     case "load":
       try {
-        const usedWebGPU = await loadModel((progress) => {
+        await loadModel((progress) => {
           self.postMessage({ type: "progress", progress });
         });
-        self.postMessage({ type: "loaded", webgpu: usedWebGPU });
+        // Send the actual usingWebGPU value (false for Safari/CPU, true for WebGPU)
+        self.postMessage({ type: "loaded", webgpu: usingWebGPU });
       } catch (error) {
         console.error("Load error:", error);
         self.postMessage({

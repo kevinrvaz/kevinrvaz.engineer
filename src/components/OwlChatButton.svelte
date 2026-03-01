@@ -946,10 +946,7 @@
 
       {#if usingCPU && modelLoaded}
         <div class="cpu-disclaimer">
-          WebGPU not available. Running on CPU (slower performance).
-          <a href="chrome://flags/#enable-unsafe-webgpu" on:click|preventDefault={() => navigator.clipboard.writeText('chrome://flags/#enable-unsafe-webgpu')}>
-            Copy flag URL
-          </a>
+          Running on CPU mode for best compatibility.
         </div>
       {/if}
 
@@ -2133,6 +2130,9 @@
     border-radius: 3px;
     padding: 8px 14px;
     min-height: 42px;
+    max-height: 80px;
+    min-width: 0;
+    overflow: hidden;
   }
 
   .audio-wave {
@@ -2160,9 +2160,21 @@
     font-family: 'Inter', sans-serif;
     font-size: 13px;
     color: #ff0066;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    min-width: 0;
+    max-height: 60px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+  }
+
+  .listening-text::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .listening-text::-webkit-scrollbar-thumb {
+    background: #ff0066;
+    border-radius: 2px;
   }
 
   .mic-button {
