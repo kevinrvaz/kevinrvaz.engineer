@@ -73,6 +73,17 @@
   ];
 
   onMount(() => {
+    // Check if Safari browser
+    const isSafari = () => {
+      const ua = navigator.userAgent;
+      return ua.includes('Safari') && !ua.includes('Chrome') && !ua.includes('Chromium');
+    };
+
+    // Don't initialize on Safari due to memory issues
+    if (isSafari()) {
+      return () => {};
+    }
+
     // Check if desktop environment (screen width >= 1024px and no touch)
     const checkDesktop = () => {
       const minWidth = window.innerWidth >= 1024;
